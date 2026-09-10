@@ -1,4 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
 
 interface DashboardData {
   bcmUnit: string;
@@ -11,7 +13,7 @@ interface DashboardData {
   selector: 'app-dashboard',
   standalone: true,
 
-  imports: [],
+  imports: [MatTableModule, MatButtonModule],
 
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
@@ -19,6 +21,14 @@ interface DashboardData {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardComponent {
+  displayedColumns: string[] = [
+    'bcmUnit',
+    'e2eAdonisId',
+    'processName',
+    'bcmClass',
+    'actions',
+  ];
+
   processes: DashboardData[] = [
     {
       bcmUnit: 'CB-UK1',
