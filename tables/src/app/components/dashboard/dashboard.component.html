@@ -1,0 +1,25 @@
+<table>
+  <tr>
+    <th>BCM Unit</th>
+    <th>Adonis Id</th>
+    <th>Process Name</th>
+    <th>BCM class</th>
+  </tr>
+
+  @for (process of processes; track process.e2eAdonisId) {
+    <tr>
+      <td>{{ process.bcmUnit }}</td>
+      <td>{{ process.e2eAdonisId }}</td>
+      <td>{{ process.processName }}</td>
+      <td>{{ process.bcmClass }}</td>
+    </tr>
+  }
+
+  @for (process of processes; track process.e2eAdonisId; let i = $index) {
+    <p>{{ i + 1 }} - {{ process.processName }}</p>
+  } @empty {
+    <tr>
+      <td colspan="4">No processes found</td>
+    </tr>
+  }
+</table>
