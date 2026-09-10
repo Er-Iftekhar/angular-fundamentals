@@ -30,7 +30,7 @@ export class DashboardComponent {
       bcmUnit: 'CB-UK2',
       e2eAdonisId: '1457/472',
       processName: 'Payment Processing2',
-      bcmClass: 'Class 1',
+      bcmClass: 'Class 3',
     },
     {
       bcmUnit: 'CB-UK3',
@@ -42,7 +42,11 @@ export class DashboardComponent {
       bcmUnit: 'CB-UK4',
       e2eAdonisId: '1457/474',
       processName: 'Payment Processing4',
-      bcmClass: 'Class 1',
+      bcmClass: 'Class 3',
     },
   ];
+
+  goToTask(process: DashboardData): void {
+    alert(`Opening task for ${process.processName}`);
+  }
 }

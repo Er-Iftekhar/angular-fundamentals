@@ -4,6 +4,7 @@
     <th>Adonis Id</th>
     <th>Process Name</th>
     <th>BCM class</th>
+    <th>Actions</th>
   </tr>
 
   @for (process of processes; track process.e2eAdonisId) {
@@ -12,6 +13,14 @@
       <td>{{ process.e2eAdonisId }}</td>
       <td>{{ process.processName }}</td>
       <td>{{ process.bcmClass }}</td>
+      <td>
+        <button
+          (click)="goToTask(process)"
+          [disabled]="process.bcmClass === 'Class 3'"
+        >
+          Open {{ process.processName }}
+        </button>
+      </td>
     </tr>
   }
 
