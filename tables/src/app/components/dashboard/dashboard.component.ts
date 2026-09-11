@@ -1,6 +1,12 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { MatTableModule } from '@angular/material/table';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  AfterViewInit,
+  ViewChild,
+} from '@angular/core';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSort, MatSortModule } from '@angular/material/sort';
 
 interface DashboardData {
   bcmUnit: string;
@@ -13,14 +19,21 @@ interface DashboardData {
   selector: 'app-dashboard',
   standalone: true,
 
-  imports: [MatTableModule, MatButtonModule],
+  imports: [MatTableModule, MatButtonModule, MatSortModule],
 
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DashboardComponent {
+export class DashboardComponent implements AfterViewInit {
+  ngAfterViewInit(): void {
+    this.dataSource.sort = this.sort;
+  }
+
+  @ViewChild(MatSort)
+  sort!: MatSort;
+
   displayedColumns: string[] = [
     'bcmUnit',
     'e2eAdonisId',
@@ -55,6 +68,8 @@ export class DashboardComponent {
       bcmClass: 'Class 3',
     },
   ];
+
+  dataSource = new MatTableDataSource<DashboardData>(this.processes);
 
   goToTask(process: DashboardData): void {
     alert(`Opening task for ${process.processName}`);
