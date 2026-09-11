@@ -1,5 +1,13 @@
 <h1>Dashboard</h1>
 
+<mat-form-field appearance="outline">
+  <mat-label>Search</mat-label>
+  <input
+    matInput
+    placeholder="Search processes"
+    (keyup)="applyFilter($event)"
+  />
+</mat-form-field>
 <table mat-table matSort [dataSource]="dataSource">
   <ng-container matColumnDef="bcmUnit">
     <th mat-header-cell mat-sort-header *matHeaderCellDef>BCM Unit</th>
