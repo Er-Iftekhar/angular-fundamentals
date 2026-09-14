@@ -36,10 +36,16 @@
   }
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  <tr
+    mat-row
+    *matRowDef="let row; columns: displayedColumns"
+    (click)="onRowClick(row)"
+  ></tr>
 </table>
 <mat-paginator
   [pageSize]="5"
   [pageSizeOptions]="pageSizeOptions"
   showFirstLastButtons
 ></mat-paginator>
+
+<button>click me</button>

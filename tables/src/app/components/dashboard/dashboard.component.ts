@@ -113,4 +113,8 @@ export class DashboardComponent implements OnInit {
   goToTask(row: DashboardData) {
     console.log('Go to task:', row);
   }
+
+  showDetails(row: DashboardData): void {
+    console.log('Show details for: ', row);
+  }
 }

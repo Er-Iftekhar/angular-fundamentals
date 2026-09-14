@@ -1,4 +1,11 @@
-import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
@@ -23,6 +30,9 @@ import { NgTemplateOutlet } from '@angular/common';
   styleUrl: './simple-table.component.scss',
 })
 export class SimpleTableComponent implements AfterViewInit {
+  @Output()
+  rowClicked = new EventEmitter<any>();
+
   @Input()
   columns: Column[] = [];
 
@@ -55,5 +65,9 @@ export class SimpleTableComponent implements AfterViewInit {
     this.dataSource.filter = input.value.trim().toLowerCase();
 
     this.dataSource.paginator?.firstPage();
+  }
+
+  onRowClick(row: any): void {
+    this.rowClicked.emit(row);
   }
 }

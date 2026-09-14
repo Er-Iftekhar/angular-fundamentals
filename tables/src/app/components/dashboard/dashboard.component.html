@@ -1,7 +1,13 @@
 <h1>Dashboard</h1>
 
-<app-simple-table [columns]="columns" [processes]="processes">
+<app-simple-table
+  [columns]="columns"
+  [processes]="processes"
+  (rowClicked)="showDetails($event)"
+>
 </app-simple-table>
 <ng-template #actionCell let-row>
-  <button mat-raised-button (click)="goToTask(row)">Go to Task</button>
+  <button mat-raised-button (click)="goToTask(row); $event.stopPropagation()">
+    Go to Task
+  </button>
 </ng-template>
