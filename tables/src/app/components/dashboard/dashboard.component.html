@@ -1,7 +1,7 @@
 <h1>Dashboard</h1>
 
 <app-simple-table
-  [columns]="columns"
+  [columns]="columns()"
   [processes]="processes"
   (rowClicked)="showDetails($event)"
 >
@@ -11,3 +11,4 @@
     Go to Task
   </button>
 </ng-template>
+<app-counter></app-counter>

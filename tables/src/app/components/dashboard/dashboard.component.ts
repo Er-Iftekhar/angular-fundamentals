@@ -5,6 +5,7 @@ import {
   ViewChild,
   TemplateRef,
   OnInit,
+  signal,
 } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatButtonModule, MatButton } from '@angular/material/button';
@@ -15,12 +16,13 @@ import { MatInputModule } from '@angular/material/input';
 import { SimpleTableComponent } from '../shared/simple-table/simple-table.component';
 import { DashboardData } from '../../models/dashboard-data.model';
 import { Column } from '../../models/column.model';
+import { CounterComponent } from '../counter/counter.component';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
 
-  imports: [SimpleTableComponent, MatButtonModule],
+  imports: [SimpleTableComponent, MatButtonModule, CounterComponent],
 
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
@@ -28,9 +30,9 @@ import { Column } from '../../models/column.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardComponent implements OnInit {
-  columns: Column[] = [];
+  columns = signal<Column[]>([]);
   ngOnInit(): void {
-    this.columns = [
+    this.columns.set([
       {
         code: 'bcmUnit',
         text: 'BCM Unit',
@@ -54,7 +56,7 @@ export class DashboardComponent implements OnInit {
         cellRef: this.actionCell,
         sortDisabled: true,
       },
-    ];
+    ]);
   }
   @ViewChild('actionCell', { static: true })
   actionCell!: TemplateRef<any>;
