@@ -13,7 +13,11 @@
         {{ column.text }}
       </th>
       <td mat-cell *matCellDef="let row">
-        {{ row[column.code] }}
+        @if (column.content) {
+          {{ column.content(row) }}
+        } @else {
+          {{ row[column.code] }}
+        }
       </td>
     </ng-container>
   }

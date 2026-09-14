@@ -42,6 +42,7 @@ export class DashboardComponent {
     {
       code: 'bcmClass',
       text: 'BCM Class',
+      content: (row) => `BCM ${row.bcmClass}`,
     },
   ];
 
@@ -50,49 +51,49 @@ export class DashboardComponent {
       bcmUnit: 'GS-OS',
       e2eAdonisId: '1457/478',
       processName: 'E2E Something',
-      bcmClass: 'Class 1',
+      bcmClass: 1,
     },
     {
       bcmUnit: 'GS-OS-2',
       e2eAdonisId: '1457/479',
       processName: 'Payment Process',
-      bcmClass: 'Class 2',
+      bcmClass: 2,
     },
     {
       bcmUnit: 'CB-UK',
       e2eAdonisId: '1457/480',
       processName: 'Customer Process',
-      bcmClass: 'Class 3',
+      bcmClass: 3,
     },
     {
       bcmUnit: 'CB-DE',
       e2eAdonisId: '1457/481',
       processName: 'Risk Management',
-      bcmClass: 'Class 2',
+      bcmClass: 2,
     },
     {
       bcmUnit: 'CB-FR',
       e2eAdonisId: '1457/482',
       processName: 'Finance Process',
-      bcmClass: 'Class 1',
+      bcmClass: 1,
     },
     {
       bcmUnit: 'CB-IT',
       e2eAdonisId: '1457/483',
       processName: 'Compliance Process',
-      bcmClass: 'Class 2',
+      bcmClass: 2,
     },
     {
       bcmUnit: 'CB-ES',
       e2eAdonisId: '1457/484',
       processName: 'Reporting Process',
-      bcmClass: 'Class 3',
+      bcmClass: 3,
     },
     {
       bcmUnit: 'CB-PL',
       e2eAdonisId: '1457/485',
       processName: 'Operations Process',
-      bcmClass: 'Class 1',
+      bcmClass: 1,
     },
   ];
 }
