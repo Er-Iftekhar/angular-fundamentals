@@ -12,6 +12,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { SimpleTableComponent } from '../shared/simple-table/simple-table.component';
 import { DashboardData } from '../../models/dashboard-data.model';
+import { Column } from '../../models/column.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -25,6 +26,25 @@ import { DashboardData } from '../../models/dashboard-data.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardComponent {
+  columns: Column[] = [
+    {
+      code: 'bcmUnit',
+      text: 'BCM Unit',
+    },
+    {
+      code: 'e2eAdonisId',
+      text: 'Adonis ID',
+    },
+    {
+      code: 'processName',
+      text: 'Process Name',
+    },
+    {
+      code: 'bcmClass',
+      text: 'BCM Class',
+    },
+  ];
+
   processes: DashboardData[] = [
     {
       bcmUnit: 'GS-OS',
