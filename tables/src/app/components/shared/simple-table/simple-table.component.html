@@ -9,11 +9,24 @@
 <table mat-table matSort [dataSource]="dataSource">
   @for (column of columns; track column.code) {
     <ng-container [matColumnDef]="column.code">
-      <th mat-header-cell mat-sort-header *matHeaderCellDef>
+      <th
+        mat-header-cell
+        mat-sort-header
+        *matHeaderCellDef
+        [disabled]="column.sortDisabled"
+      >
         {{ column.text }}
       </th>
       <td mat-cell *matCellDef="let row">
-        @if (column.content) {
+        @if (column.cellRef) {
+          <ng-container
+            [ngTemplateOutlet]="column.cellRef"
+            [ngTemplateOutletContext]="{
+              $implicit: row,
+            }"
+          >
+          </ng-container>
+        } @else if (column.content) {
           {{ column.content(row) }}
         } @else {
           {{ row[column.code] }}

@@ -2,3 +2,6 @@
 
 <app-simple-table [columns]="columns" [processes]="processes">
 </app-simple-table>
+<ng-template #actionCell let-row>
+  <button mat-raised-button (click)="goToTask(row)">Go to Task</button>
+</ng-template>

@@ -3,9 +3,11 @@ import {
   Component,
   AfterViewInit,
   ViewChild,
+  TemplateRef,
+  OnInit,
 } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { MatButtonModule } from '@angular/material/button';
+import { MatButtonModule, MatButton } from '@angular/material/button';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -18,33 +20,44 @@ import { Column } from '../../models/column.model';
   selector: 'app-dashboard',
   standalone: true,
 
-  imports: [SimpleTableComponent],
+  imports: [SimpleTableComponent, MatButtonModule],
 
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DashboardComponent {
-  columns: Column[] = [
-    {
-      code: 'bcmUnit',
-      text: 'BCM Unit',
-    },
-    {
-      code: 'e2eAdonisId',
-      text: 'Adonis ID',
-    },
-    {
-      code: 'processName',
-      text: 'Process Name',
-    },
-    {
-      code: 'bcmClass',
-      text: 'BCM Class',
-      content: (row) => `BCM ${row.bcmClass}`,
-    },
-  ];
+export class DashboardComponent implements OnInit {
+  columns: Column[] = [];
+  ngOnInit(): void {
+    this.columns = [
+      {
+        code: 'bcmUnit',
+        text: 'BCM Unit',
+      },
+      {
+        code: 'e2eAdonisId',
+        text: 'Adonis ID',
+      },
+      {
+        code: 'processName',
+        text: 'Process Name',
+      },
+      {
+        code: 'bcmClass',
+        text: 'BCM Class',
+        content: (row) => `BCM ${row.bcmClass}`,
+      },
+      {
+        code: 'actions',
+        text: 'Actions',
+        cellRef: this.actionCell,
+        sortDisabled: true,
+      },
+    ];
+  }
+  @ViewChild('actionCell', { static: true })
+  actionCell!: TemplateRef<any>;
 
   processes: DashboardData[] = [
     {
@@ -96,4 +109,8 @@ export class DashboardComponent {
       bcmClass: 1,
     },
   ];
+
+  goToTask(row: DashboardData) {
+    console.log('Go to task:', row);
+  }
 }

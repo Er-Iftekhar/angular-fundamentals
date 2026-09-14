@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { Column } from '../../../models/column.model';
+import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: 'app-simple-table',
@@ -16,6 +17,7 @@ import { Column } from '../../../models/column.model';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    NgTemplateOutlet,
   ],
   templateUrl: './simple-table.component.html',
   styleUrl: './simple-table.component.scss',
