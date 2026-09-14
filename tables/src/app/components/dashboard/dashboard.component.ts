@@ -10,52 +10,21 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-
-interface DashboardData {
-  bcmUnit: string;
-  e2eAdonisId: string;
-  processName: string;
-  bcmClass: string;
-}
+import { SimpleTableComponent } from '../shared/simple-table/simple-table.component';
+import { DashboardData } from '../../models/dashboard-data.model';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
 
-  imports: [
-    MatTableModule,
-    MatButtonModule,
-    MatSortModule,
-    MatPaginatorModule,
-    MatFormFieldModule,
-    MatInputModule,
-  ],
+  imports: [SimpleTableComponent],
 
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DashboardComponent implements AfterViewInit {
-  ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-  }
-
-  @ViewChild(MatSort)
-  sort!: MatSort;
-
-  @ViewChild(MatPaginator)
-  paginator!: MatPaginator;
-
-  displayedColumns: string[] = [
-    'bcmUnit',
-    'e2eAdonisId',
-    'processName',
-    'bcmClass',
-    'actions',
-  ];
-
+export class DashboardComponent {
   processes: DashboardData[] = [
     {
       bcmUnit: 'GS-OS',
@@ -106,21 +75,4 @@ export class DashboardComponent implements AfterViewInit {
       bcmClass: 'Class 1',
     },
   ];
-
-  pageSizeOptions: number[] = [5, 10, 25, 50];
-
-  dataSource = new MatTableDataSource<DashboardData>(this.processes);
-
-  goToTask(process: DashboardData): void {
-    alert(`Opening task for ${process.processName}`);
-  }
-
-  applyFilter(event: Event): void {
-    const input = event.target as HTMLInputElement;
-
-    const filterValue = input.value;
-
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-    this.dataSource.paginator?.firstPage();
-  }
 }
